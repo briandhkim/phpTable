@@ -28,12 +28,11 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 	}
 	switch($_GET['action']){
 		case 'get_all_data':
-			include('get_all_data.php');
+			include('get_read/get_all_data.php');
 			break;
 		default:
 			$output['errors'][] = 'invalid action';
 	}
-	
 
 }else if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	if(empty($_POST['action'])){
@@ -45,6 +44,31 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 		// case 'get_all_data':
 		// include('get_all_data.php');
 		// 	break;
+		default:
+			$output['errors'][] = 'invalid action';
+	}
+
+}else if($_SERVER['REQUEST_METHOD'] === 'PUT'){
+	parse_str(file_get_contents("php://input"), $post_vars);
+
+	if(empty($post_vars['action'])){
+		$output['errors'][] = 'action not provided';
+		output_and_exit($output);
+	}
+
+
+}else if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+	parse_str(file_get_contents("php://input"), $post_vars);
+
+	if(empty($post_vars['action'])){
+		$output['errors'][] = 'action not provided';
+		output_and_exit($output);
+	}
+
+	switch($post_vars['action']){
+		case 'delete_by_id':
+			include('delete/delete_by_id.php');
+			break;
 		default:
 			$output['errors'][] = 'invalid action';
 	}

@@ -5,12 +5,28 @@
 	<script type="text/javascript">
 		
 		$(document).ready(()=>{
+			// $.ajax({
+			// 	url:'./table/access.php',
+			// 	method: 'GET',
+			// 	dataType: 'JSON',
+			// 	data: {
+			// 		action: 'get_all_data'
+			// 	},
+			// 	success: function(data){
+			// 		console.log(data);
+			// 	},
+			// 	error: function(err){
+			// 		console.log(err);
+			// 	}
+			// });
+
 			$.ajax({
-				url:'./table/access.php',
-				method: 'GET',
+				url: './table/access.php',
+				method: 'DELETE',
 				dataType: 'JSON',
 				data: {
-					action: 'get_all_data'
+					action: 'delete_by_id',
+					employee_id: 23
 				},
 				success: function(data){
 					console.log(data);
