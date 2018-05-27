@@ -20,13 +20,32 @@
 			// 	}
 			// });
 
+			// $.ajax({
+			// 	url: './table/access.php',
+			// 	method: 'DELETE',
+			// 	dataType: 'JSON',
+			// 	data: {
+			// 		action: 'delete_by_id',
+			// 		employee_id: 23
+			// 	},
+			// 	success: function(data){
+			// 		console.log(data);
+			// 	},
+			// 	error: function(err){
+			// 		console.log(err);
+			// 	}
+			// });
+
 			$.ajax({
 				url: './table/access.php',
-				method: 'DELETE',
+				method: 'POST',
 				dataType: 'JSON',
 				data: {
-					action: 'delete_by_id',
-					employee_id: 23
+					action: 'add_employee',
+					first_name: 'tester',
+					last_name: 'LastName',
+					phone_number: 8017001111,
+					supervisor: 'super visor'
 				},
 				success: function(data){
 					console.log(data);
