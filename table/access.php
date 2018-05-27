@@ -30,6 +30,9 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 		case 'get_all_data':
 			include('get_read/get_all_data.php');
 			break;
+		case 'search_by_id':
+			include('get_read/search_by_id.php');
+			break;
 		default:
 			$output['errors'][] = 'invalid action';
 	}

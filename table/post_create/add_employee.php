@@ -59,7 +59,7 @@ if($stmt->execute()){
 		foreach($employee as $e){
 			echo $e, '<br>';
 		}
-		$output['errors'][] = 'duplicate person found';
+		$output['errors'][] = 'This employee is already registered';
 		output_and_exit($output);
 	}
 }
