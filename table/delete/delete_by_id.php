@@ -29,6 +29,6 @@ if( $conn->affected_rows>0 ){
 	$output['success'] = true;
 	$output['messages'][] = 'Employee deleted';
 }else{
-	$output['error'] = 'Wrong ID or no employee to delete';
+	$output['errors'][] = 'Wrong ID or no employee to delete';
 }
 ?>

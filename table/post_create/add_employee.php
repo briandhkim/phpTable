@@ -56,9 +56,9 @@ if( $stmt->execute() ){
 
 	$stmt->close();
 	if(!empty($f_name)){
-		foreach($employee as $e){
-			echo $e, '<br>';
-		}
+		// foreach($employee as $e){
+		// 	echo $e, '<br>';
+		// }
 		$output['errors'][] = 'This employee is already registered';
 		output_and_exit($output);
 	}
