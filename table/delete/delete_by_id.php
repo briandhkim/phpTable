@@ -3,7 +3,7 @@ if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
 
-if(empty($post_vars['employee_id'])){
+if( empty($post_vars['employee_id']) ){
 	$output['error'][] = 'missing employee ID';
 	output_and_exit($output);
 }
@@ -17,7 +17,7 @@ $query =
 	WHERE
 		employee_id = ?";
 
-if(!($stmt = $conn->prepare($query))){
+if( !($stmt = $conn->prepare($query)) ){
     $output['errors'][] = 'query error';
     output_and_exit($output);
 }
@@ -25,7 +25,7 @@ if(!($stmt = $conn->prepare($query))){
 $stmt->bind_param("i", $employee_id);
 $stmt->execute();
 
-if($conn->affected_rows>0){
+if( $conn->affected_rows>0 ){
 	$output['success'] = true;
 	$output['messages'][] = 'Employee deleted';
 }else{

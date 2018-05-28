@@ -44,7 +44,7 @@ $stmt->bind_param('ssis', $first_name, $last_name, $phone_number, $supervisor);
 // 	$output['errors'][] = 'duplicate person found';
 // 	output_and_exit($output);
 // }
-if($stmt->execute()){
+if( $stmt->execute() ){
 	$stmt->bind_result($f_name, $l_name, $emp_id, $p_number, $sup);
 	mysqli_stmt_fetch($stmt);
 

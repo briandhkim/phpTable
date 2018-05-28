@@ -3,30 +3,25 @@
 	    die('direction access not allowed');
 	}
 
-	if(empty($_GET['employee_id'])){
-		$output['errors'][] = 'No employee ID to look up';
-		output_and_exit($output);
-	}
-
-	$emp_id = filter_var($_GET['employee_id'], FILTER_SANITIZE_NUMBER_INT);
+	$f_name = filter_var($_GET['first_name'], FILTER_SANITIZE_STRING);
+	$l_name = filter_var($_GET['last_name'], FILTER_SANITIZE_STRING);
 
 	$query = 
-		"SELECT
+		"SELECT 
 			*
 		FROM
 			employees
 		WHERE
-			employee_id = ?";
+			first_name = ? AND last_name = ?";
 
 	if( !($stmt = $conn->prepare($query)) ){
-		$output['errors'][] = 'search by ID sql error';
+		$output['errors'][] = 'search by first and last name sql error';
 		output_and_exit($output);
 	}
-	$stmt->bind_param('i', $emp_id);
+	$stmt->bind_param('ss', $f_name, $l_name);
 
 	if( $stmt->execute() ){
 		$stmt->bind_result($employee_id, $first_name, $last_name, $phone_number, $supervisor);
-		// mysqli_stmt_fetch($stmt);
 
 		while( $stmt->fetch() ){
 			$employee['first_name'] = $first_name;
@@ -45,18 +40,6 @@
 		}
 		$stmt->close();
 	}else{
-		$output['errors'][] = 'sql error with search by employee ID';
+		$output['errors'][] = 'sql error with search by first and last name';
 	}
-
-	// $stmt->execute();
-	// $result = $stmt->get_result();
-
-	// if($result->num_rows>0){
-	// 	$output['success'] = true;
-	// 	$row = $result->fetch_assoc();
-	// 	$output['data'][] = $row;
-	// }else{
-	// 	$output['errors'][] = 'no matching employees';
-	// 	$output['no_employee_match'] = true;
-	// }
 ?>
