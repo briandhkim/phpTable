@@ -1,4 +1,4 @@
-url: https://piedpiper.briandhkim.fun/table.access.php
+url: https://piedpiper.briandhkim.fun/table/access.php
 
 GET ALL DATA
 $.ajax({
